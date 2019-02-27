@@ -1,0 +1,7 @@
+[user]
+  name = Karsten Hachmeister
+  email = karsten@hachmeister.org
+[core]
+  pager = less -S
+[push]
+  default = simple
