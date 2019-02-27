@@ -97,6 +97,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# load liquidprompt
+if [ -f ~/.liquidprompt/liquidprompt ]; then
+  . ~/.liquidprompt/liquidprompt
+fi
+
 # add local changes to your bash environment in ~/.bash_local
 if [ -f ~/.bash_local ]; then
   . ~/.bash_local
