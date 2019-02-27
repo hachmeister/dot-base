@@ -1,0 +1,19 @@
+#!/bin/bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+find -mindepth 1 -maxdepth 1 -type d | sort | while read file; do
+  git -C "$file" rev-parse &> /dev/null
+  code=$?
+
+  if [ $code == 0 ]; then
+    repo=$(basename "$file")
+    echo "${bold}${repo}:${normal}"
+
+    if (( "$#" > 0 )); then
+      git -C "$file" "$@"
+    fi
+  fi
+
+done
