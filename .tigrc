@@ -1,0 +1,22 @@
+# Variables
+set commit-order = date
+
+# View settings
+set main-options = --all
+set main-view = id:yes author:width:20 date:custom commit-title:yes,graph,refs
+
+color id        yellow  default
+color author    default default
+color date      green   default
+color main-ref  red     default
+
+# UI display settings
+set tab-size = 2
+
+# Generic
+bind generic  <Up>      move-up
+bind generic  <Down>    move-down
+bind generic  <C-Down>  next
+bind generic  <C-Up>    previous
+bind generic  <Ins>     previous
+bind generic  <Del>     next
