@@ -1,5 +1,4 @@
-Base dotfiles
-=============
+# Base dotfiles
 
 My dotfiles repository uses [dotfiler](https://github.com/svetlyak40wt/dotfiler).
 
