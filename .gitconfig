@@ -3,5 +3,11 @@
   email = karsten@hachmeister.org
 [core]
   pager = less -S
+[diff]
+  algorithm = histogram
+[pager]
+  diff = diff-highlight | less -S
+  log = diff-highlight | less -S
+  show = diff-highlight | less -S
 [push]
   default = simple
