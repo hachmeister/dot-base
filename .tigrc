@@ -1,5 +1,5 @@
 # Variables
-set commit-order = date
+set commit-order = author-date
 
 # View settings
 set main-options = --all
