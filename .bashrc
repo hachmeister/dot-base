@@ -102,6 +102,9 @@ if [ -f ~/.liquidprompt/liquidprompt ]; then
   . ~/.liquidprompt/liquidprompt
 fi
 
+[ -f /usr/bin/kubectl ] && . <(kubectl completion bash)
+[ -f /usr/bin/kubeadm ] && . <(kubeadm completion bash)
+
 # add local changes to your bash environment in ~/.bash_local
 if [ -f ~/.bash_local ]; then
   . ~/.bash_local
