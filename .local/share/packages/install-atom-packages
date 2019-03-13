@@ -1,0 +1,19 @@
+#!/bin/bash
+apm i \
+  autocomplete-clang \
+  autocomplete-cmake \
+  autocomplete-php \
+  autocomplete-python \
+  clang-format \
+  file-icons \
+  git-blame \
+  gruvbox-plus-syntax \
+  highlight-selected \
+  language-cmake \
+  linter \
+  linter-clang \
+  linter-php \
+  linter-shellcheck \
+  linter-ui-default \
+  minimap \
+  minimap-git-diff
