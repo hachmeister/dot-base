@@ -8,7 +8,7 @@ Standards-Version: 3.9.2
 
 Package: system
 Version: 0.1
-Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
+Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
 Depends: apt-listbugs, apt-listchanges, aptitude, etckeeper
 # Recommends: <comma-separated list of packages>

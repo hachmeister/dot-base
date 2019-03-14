@@ -6,11 +6,11 @@ Priority: optional
 # Homepage: <enter URL here; no default>
 Standards-Version: 3.9.2
 
-Package: c++
+Package: java
 Version: 0.1
 Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
-Depends: build-essential, clang-format, cmake, cmake-curses-gui
+Depends: maven, openjdk-8-jdk-headless, openjdk-11-jdk-headless
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
@@ -24,4 +24,4 @@ Depends: build-essential, clang-format, cmake, cmake-curses-gui
 # Links: <pair of space-separated paths; First is path symlink points at, second is filename of link>
 # Files: <pair of space-separated paths; First is file to include, second is destination>
 #  <more pairs, if there's more than one file to include. Notice the starting space>
-Description: Development tools for C++
+Description: Java development tools
