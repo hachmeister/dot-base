@@ -1,0 +1,101 @@
+#!/usr/bin/python3
+# coding: utf-8
+
+"""
+Cleaning up a tmp diretory
+"""
+
+import os
+import shutil
+import sys
+from datetime import datetime, timedelta
+
+def calculate_wipe_date():
+  """ Montag vor 2 Wochen """
+  now = datetime.now()
+  return now - timedelta(now.weekday() + 14, now.second,
+                         now.microsecond, 0, now.minute, now.hour)
+
+def check_file_date(entry):
+  """ Modified date der Datei """
+  statinfo = os.stat(entry)
+  return datetime.fromtimestamp(statinfo.st_mtime)
+
+# Datum der aktuellsten Datei eines Verzeichniseintrages
+def determine_newest_date(root):
+  """ Datum der aktuellsten Datei eines Verzeichniseintrages """
+  if os.path.isfile(root):
+    return check_file_date(root)
+  elif os.path.isdir(root):
+    newest_date = datetime.min
+
+    for dirpath, dummy_dirnames, filenames in os.walk(root):
+
+      for filename in filenames:
+        entry = os.path.join(dirpath, filename)
+
+        if os.path.exists(entry):
+          entry_date = check_file_date(entry)
+
+          if newest_date < entry_date:
+            newest_date = entry_date
+
+    return newest_date
+
+# main
+def main():
+  """ Main function """
+  if len(sys.argv) != 2:
+    print("Es wurde kein Verzeichnis angegeben.")
+    sys.exit(1)
+
+  path = sys.argv[1]
+  wipe_day = 4
+
+  if not os.path.isdir(path):
+    print("Der angegebene Pfad ist kein Verzeichnis.")
+    sys.exit(2)
+
+  now = datetime.now()
+
+  wipe_date = calculate_wipe_date()
+  wipe_array = []
+
+  # Alle Verzeichniseinträge finden, die gelöscht werden sollen.
+  # Dotfiles werden ignoriert.
+  for filename in os.listdir(path):
+    if not filename.startswith("."):
+      entry = os.path.join(path, filename)
+
+      if os.path.islink(entry):
+        wipe_array.append(entry)
+      else:
+        newest_date = determine_newest_date(entry)
+
+        if newest_date < wipe_date:
+          wipe_array.append(entry)
+
+  # Wenn es zu löschende Einträge gibt, diese ausgeben oder am "Wipe Day" löschen.
+  if len(wipe_array) > 0:
+    if now.weekday() < wipe_day:
+      # Alle Verzeichniseinträge ausgeben, die gelöscht werden sollen.
+      print("Folgende Dateien werden Freitag gelöscht:\n")
+
+      for entry in wipe_array:
+        print(entry)
+    else:
+      # Alle Verzeichniseinträge löschen, die gelöscht werden sollen.
+      print("Folgende Dateien wurden gerade gelöscht:\n")
+
+      for entry in wipe_array:
+        print(entry)
+
+        if os.path.islink(entry):
+          os.unlink(entry)
+        elif os.path.isfile(entry):
+          os.remove(entry)
+        elif os.path.isdir(entry):
+          shutil.rmtree(entry)
+
+if __name__ == '__main__':
+  main()
