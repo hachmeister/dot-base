@@ -7,10 +7,10 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: system
-Version: 0.1
+Version: 0.3
 Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
-Depends: apt-listbugs, apt-listchanges, aptitude, etckeeper
+Depends: anacron, apt-listbugs, apt-listchanges, aptitude, etckeeper, exim4
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>

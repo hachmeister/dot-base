@@ -7,10 +7,10 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: tools
-Version: 0.2
+Version: 0.3
 Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
-Depends: curl, fonts-firacode, git, htop, jq, mate-terminal, silversearcher-ag, sshfs, sshuttle, tig, tree, vim, wget, xml2, xmlstarlet
+Depends: curl, fonts-firacode, git, htop, httpie, jq, mate-terminal, silversearcher-ag, sshfs, sshuttle, tig, tree, vim, wget, xml2, xmlstarlet
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
