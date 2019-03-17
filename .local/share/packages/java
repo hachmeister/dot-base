@@ -7,10 +7,10 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: java
-Version: 0.1
+Version: 0.2
 Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
-Depends: maven, openjdk-8-jdk-headless, openjdk-11-jdk-headless
+Depends: maven, openjdk-8-jdk-headless, openjdk-8-source, openjdk-11-jdk-headless, openjdk-11-source
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
