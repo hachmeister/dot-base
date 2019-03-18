@@ -9,6 +9,10 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# Check if the wide screen monitor is present and activate it
+exec --no-startup-id switch-monitor
+
+# Set modifier
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -166,7 +170,9 @@ bindsym $mod+r mode "resize"
 # Other bindings
 bindsym $mod+Ctrl+Left  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+Ctrl+Right exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+Ctrl+space exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+Ctrl+Down  exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+Ctrl+space exec --no-startup-id mpc toggle
+bindcode 127  exec --no-startup-id slock
 
 # Style
 new_window pixel 3
