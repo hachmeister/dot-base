@@ -1,0 +1,3 @@
+#!/bin/bash
+remmina -c ~/.local/share/remmina/1530115627264.remmina
+#remmina-gnome -c ~/.local/share/remmina/1530115627264.remmina
