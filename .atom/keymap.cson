@@ -34,3 +34,4 @@
 'atom-text-editor':
   'home': 'editor:move-to-beginning-of-line'
   'ctrl-f': 'find-and-replace:show'
+  'alt-space': 'tree-view:toggle'
