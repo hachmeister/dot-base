@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xrandr --fb 5760x1600 --output eDP-1 --pos 0x520 --output DP-2-2 --mode 3840x1600 --pos 1920x0
+[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg
