@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Backup directory
+BACKUP_PATH="${HOME}/backup"
+
+# Directories to backup
+BACKUP_DIRECTORIES=(
+  # "${HOME}/importent_data"
+)

@@ -1,0 +1,115 @@
+#!/bin/bash
+
+CONFIG="${HOME}/.config/backup/config"
+
+if [[ ! -r "${CONFIG}" ]]; then
+  echo "Could not read config from: ${CONFIG}"
+  exit 1
+fi
+
+# echo "read config from: ${CONFIG}"
+source "${CONFIG}"
+
+if [[ ! -w "${BACKUP_PATH}" ]]; then
+  echo "'${BACKUP_PATH}' is not writable"
+  exit 1
+fi
+
+# exit 0
+
+# return a daily name
+# use: daily_name "basename" "suffix"
+daily_name() {
+  local label
+  local num
+
+  label=$(date "+%a")
+  num=$(printf "%02d" "$(date "+%u")")
+
+  echo "${1}-daily-${num}-${label}${2}"
+}
+
+# return a weekly name
+# use: weekly_name "basename" "suffix"
+weekly_name() {
+  local label
+  local num
+
+  label=$(expr $(date "+%W") - $(date "+%W" -d "$(date "+%Y-%m-01")") + 1)
+  num=$(printf "%02d" "${label}")
+
+  echo "${1}-weekly-${num}${2}"
+}
+
+# return a monthly name
+# use: monthly_name "basename" "suffix"
+monthly_name() {
+  local label
+  local num
+
+  label=$(date "+%b")
+  #num=$(printf "%02d" "$(date "+%m")")
+  num=$(date "+%m")
+
+  echo "${1}-monthly-${num}-${label}${2}"
+}
+
+# Backup directories
+for line in "${BACKUP_DIRECTORIES[@]}"
+do
+  entry=($line)
+
+  path=${entry[0]}
+  basename=$(basename "${path}")
+  dirname=$(dirname "${path}")
+
+  # Daily backup
+  [ ${entry[1]} ] && eval ${entry[1]}
+
+  DAILY_NAME="$(daily_name "${basename}" ".tar.gz")"
+  echo "Archiving directory '${path}' to '${BACKUP_PATH}/${DAILY_NAME}'."
+  tar czf "${BACKUP_PATH}/${DAILY_NAME}" -C "${dirname}" "${basename}"
+
+  [ ${entry[2]} ] && eval ${entry[2]}
+
+  # Weekly backup
+  if [ "$(date "+%u")" = "7" ]
+  then
+    WEEKLY_NAME="$(weekly_name "${basename}" ".tar.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${WEEKLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${WEEKLY_NAME}"
+  fi
+
+  # Monthly backup
+  if [ "$(date "+%d")" = "28" ]
+  then
+    MONTHLY_NAME="$(monthly_name "${basename}" ".tar.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${MONTHLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${MONTHLY_NAME}"
+  fi
+done
+
+# Backup databases
+for db in "${DBS_TO_BACKUP[@]}"
+do
+  # Daily backup
+  DAILY_NAME="$(daily_name "${db}" ".sql.gz")"
+  echo "Archiving database '${db}' to '${BACKUP_PATH}/${DAILY_NAME}'."
+  mysqldump "${db}" -u ${DB_USER} -p${DB_PASS} 2> /dev/null | gzip > "${BACKUP_PATH}/${DAILY_NAME}"
+
+  # Weekly backup
+  if [ "$(date "+%u")" = "7" ]
+  then
+    WEEKLY_NAME="$(weekly_name "${db}" ".sql.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${WEEKLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${WEEKLY_NAME}"
+  fi
+
+  # Monthly backup
+  if [ "$(date "+%d")" = "28" ]
+  then
+    MONTHLY_NAME="$(monthly_name "${db}" ".sql.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${MONTHLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${MONTHLY_NAME}"
+  fi
+done
