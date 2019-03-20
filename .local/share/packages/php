@@ -6,11 +6,11 @@ Priority: optional
 # Homepage: <enter URL here; no default>
 Standards-Version: 3.9.2
 
-Package: tools
-Version: 0.4
-Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
+Package: php
+Version: 0.5
+Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
-Depends: curl, fonts-firacode, git, htop, httpie, jq, mate-terminal, meld, silversearcher-ag, sshfs, sshuttle, tig, tree, vim, wget, xml2, xmlstarlet
+Depends: composer, php-cli, php-curl, php-xml, php-zip
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
@@ -24,8 +24,4 @@ Depends: curl, fonts-firacode, git, htop, httpie, jq, mate-terminal, meld, silve
 # Links: <pair of space-separated paths; First is path symlink points at, second is filename of link>
 # Files: <pair of space-separated paths; First is file to include, second is destination>
 #  <more pairs, if there's more than one file to include. Notice the starting space>
-Description: common tools i use
- install:
-  - sudo apt install equivs
-  - equivs-build tools
-  - sudo apt install ./tools_x.y_all.deb
+Description: PHP development
