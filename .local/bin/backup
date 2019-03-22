@@ -2,6 +2,8 @@
 
 CONFIG="${HOME}/.config/backup/config"
 
+GZIP_CMD="$(command -v pigz || command -v gzip)"
+
 if [[ ! -r "${CONFIG}" ]]; then
   echo "Could not read config from: ${CONFIG}"
   exit 1
@@ -89,13 +91,39 @@ do
   fi
 done
 
-# Backup databases
-for db in "${DBS_TO_BACKUP[@]}"
+# Backup MySQL databases
+for db in "${BACKUP_MYSQL_DATABASES[@]}"
 do
   # Daily backup
   DAILY_NAME="$(daily_name "${db}" ".sql.gz")"
-  echo "Archiving database '${db}' to '${BACKUP_PATH}/${DAILY_NAME}'."
-  mysqldump "${db}" -u ${DB_USER} -p${DB_PASS} 2> /dev/null | gzip > "${BACKUP_PATH}/${DAILY_NAME}"
+  echo "Archiving MySQL database '${db}' to '${BACKUP_PATH}/${DAILY_NAME}'."
+  mysqldump "${db}" -u ${DB_USER} -p${DB_PASS} 2> /dev/null | "${GZIP_CMD}" > "${BACKUP_PATH}/${DAILY_NAME}"
+
+  # Weekly backup
+  if [ "$(date "+%u")" = "7" ]
+  then
+    WEEKLY_NAME="$(weekly_name "${db}" ".sql.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${WEEKLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${WEEKLY_NAME}"
+  fi
+
+  # Monthly backup
+  if [ "$(date "+%d")" = "28" ]
+  then
+    MONTHLY_NAME="$(monthly_name "${db}" ".sql.gz")"
+    echo "Copying '${BACKUP_PATH}/${DAILY_NAME}' to '${BACKUP_PATH}/${MONTHLY_NAME}'."
+    cp "${BACKUP_PATH}/${DAILY_NAME}" "${BACKUP_PATH}/${MONTHLY_NAME}"
+  fi
+done
+
+# Backup PostgreSQL databases
+for db in "${BACKUP_POSTGRESQL_DATABASES[@]}"
+do
+  # Daily backup
+  DAILY_NAME="$(daily_name "${db}" ".sql.gz")"
+  echo "Archiving PostgreSQL database '${db}' to '${BACKUP_PATH}/${DAILY_NAME}'."
+  # mysqldump "${db}" -u ${DB_USER} -p${DB_PASS} 2> /dev/null | GZIP_CMD > "${BACKUP_PATH}/${DAILY_NAME}"
+  pg_dump "${db}" --verbose --clean --if-exists | "${GZIP_CMD}" > "${BACKUP_PATH}/${DAILY_NAME}"
 
   # Weekly backup
   if [ "$(date "+%u")" = "7" ]
