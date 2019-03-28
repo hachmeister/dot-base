@@ -1,4 +1,6 @@
 #!/bin/bash
 
+FEH=$(which feh)
+
 xrandr --output DP-2-2 --off
-[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg
+[ -x ${FEH} ] && ${FEH} --bg-fill --image-bg 'black' --no-fehbg --random '/home/hachmeisterk/images/wallpaper'
