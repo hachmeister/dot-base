@@ -6,11 +6,11 @@ Priority: optional
 # Homepage: <enter URL here; no default>
 Standards-Version: 3.9.2
 
-Package: c++
-Version: 0.2
-Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
+Package: php-deps
+Version: 0.5
+Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
-Depends: build-essential, clang, clang-format, cmake, cmake-curses-gui
+Depends: composer, php-cli, php-curl, php-xml, php-zip
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
@@ -24,4 +24,4 @@ Depends: build-essential, clang, clang-format, cmake, cmake-curses-gui
 # Links: <pair of space-separated paths; First is path symlink points at, second is filename of link>
 # Files: <pair of space-separated paths; First is file to include, second is destination>
 #  <more pairs, if there's more than one file to include. Notice the starting space>
-Description: Development tools for C++
+Description: PHP development

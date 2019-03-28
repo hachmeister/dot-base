@@ -6,11 +6,11 @@ Priority: optional
 # Homepage: <enter URL here; no default>
 Standards-Version: 3.9.2
 
-Package: system
-Version: 0.3
-Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
+Package: javascript-deps
+Version: 0.2
+Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
-Depends: anacron, apt-listbugs, apt-listchanges, aptitude, etckeeper, exim4
+Depends: nodejs, npm
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
@@ -24,8 +24,4 @@ Depends: anacron, apt-listbugs, apt-listchanges, aptitude, etckeeper, exim4
 # Links: <pair of space-separated paths; First is path symlink points at, second is filename of link>
 # Files: <pair of space-separated paths; First is file to include, second is destination>
 #  <more pairs, if there's more than one file to include. Notice the starting space>
-Description: some useful system tools
- install:
-  - sudo apt install equivs
-  - equivs-build system
-  - sudo apt install ./system_x.y_all.deb
+Description: Javascript development

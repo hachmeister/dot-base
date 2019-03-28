@@ -6,7 +6,7 @@ Priority: optional
 # Homepage: <enter URL here; no default>
 Standards-Version: 3.9.2
 
-Package: gui-tools
+Package: gui-tools-deps
 Version: 0.1
 Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
