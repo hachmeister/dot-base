@@ -10,7 +10,7 @@ Package: system-deps
 Version: 0.3
 Maintainer: Karsten Hachmeister <karsten@hachmeister.org>
 # Pre-Depends: <comma-separated list of packages>
-Depends: anacron, apt-listbugs, apt-listchanges, aptitude, etckeeper, exim4
+Depends: anacron, apt-listbugs, apt-listchanges, aptitude, cups, etckeeper, exim4, system-config-printer
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
