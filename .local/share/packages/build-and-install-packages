@@ -9,3 +9,6 @@ do
   echo "... ${file}"
   equivs-build "${file}" > /dev/null
 done
+
+echo "Installing packages..."
+sudo apt install -y ./*.deb
