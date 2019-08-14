@@ -10,7 +10,7 @@ Package: gui-tools-deps
 Version: 0.1
 Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
-Depends: mate-terminal, meld, zathura
+Depends: mate-terminal, meld, nomacs, zathura
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>
