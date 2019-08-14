@@ -102,6 +102,8 @@ if [ -f ~/.liquidprompt/liquidprompt ]; then
   . ~/.liquidprompt/liquidprompt
 fi
 
+# bash completion
+complete -o bashdefault -o default -o nospace -F __git_wrap__git_main rgit
 [ -f /usr/bin/kubectl ] && . <(kubectl completion bash)
 [ -f /usr/bin/kubeadm ] && . <(kubeadm completion bash)
 
