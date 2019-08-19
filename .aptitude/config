@@ -2,7 +2,7 @@ aptitude "";
 aptitude::Keep-Unused-Pattern "";
 aptitude::Delete-Unused-Pattern "";
 aptitude::UI "";
-aptitude::UI::Package-Display-Format "%c%a%M%S %p %t %Z %v %V";
+aptitude::UI::Package-Display-Format "%c%a%M%S %p %t %i %Z %v %V";
 aptitude::UI::Flat-View-As-First-View "true";
 aptitude::UI::Minibuf-Prompts "false";
 aptitude::UI::Pause-After-Download "OnlyIfError";
