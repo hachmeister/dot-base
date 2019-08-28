@@ -102,13 +102,6 @@ if [ -f ~/.liquidprompt/liquidprompt ]; then
   . ~/.liquidprompt/liquidprompt
 fi
 
-# bash completion
-[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
-[ -x /usr/bin/kubectl ] && . <(kubectl completion bash)
-[ -x /usr/bin/kubeadm ] && . <(kubeadm completion bash)
-
-complete -o bashdefault -o default -o nospace -F __git_wrap__git_main rgit
-
 # add local changes to your bash environment in ~/.bash_local
 if [ -f ~/.bash_local ]; then
   . ~/.bash_local
