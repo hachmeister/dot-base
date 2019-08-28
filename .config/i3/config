@@ -202,7 +202,16 @@ bar {
   }
 }
 
+# Windows
+for_window [class="client"] floating enable border normal 2
+
 # Apps
 exec --no-startup-id nm-applet
 exec --no-startup-id pidgin
 exec --no-startup-id redshift-gtk
+
+# Disable energy saving
+exec --no-startup-id xset -dpms s off
+
+# Enable Numlock
+exec --no-startup-id numlockx on
