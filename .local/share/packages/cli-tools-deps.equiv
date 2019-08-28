@@ -7,10 +7,10 @@ Priority: optional
 Standards-Version: 3.9.2
 
 Package: cli-tools-deps
-Version: 0.1
+Version: 0.2
 Maintainer: Karsten Hachmeister <karsten.hachmeister@tib.eu>
 # Pre-Depends: <comma-separated list of packages>
-Depends: curl, fonts-firacode, git, htop, httpie, jq, moreutils, silversearcher-ag, sshfs, sshuttle, tig, tree, vim, wget, xml2, xmlstarlet
+Depends: curl, fonts-firacode, git, grc, htop, httpie, jq, moreutils, silversearcher-ag, sshfs, sshuttle, tig, tree, vim, wget, xml2, xmlstarlet
 # Depends: <comma-separated list of packages>
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
