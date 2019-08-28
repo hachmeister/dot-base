@@ -8,3 +8,11 @@ alias agl='ag --pager "less -R"'
 # Fuzzy search
 alias f='ls -l $(find -type f -not -path '"'"'*/\.*'"'"' | fzy)'
 
+# kubectl
+function k() {
+  grc kubectl "$@"
+}
+
+function wk() {
+  watch --differences --color 'kubectl '"$@"' 2>&1 | cat -s | grcat conf.kubectl-get'
+}
