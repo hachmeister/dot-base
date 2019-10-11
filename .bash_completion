@@ -9,3 +9,6 @@ complete -o bashdefault -o default -o nospace -F __git_wrap__git_main rgit
 
 complete -o default -F __start_kubectl k
 complete -o default -F __start_kubectl wk
+
+# maven
+[ -f /usr/share/bash-completion/completions/maven ] && . /usr/share/bash-completion/completions/maven
