@@ -102,6 +102,8 @@ if [ -f ~/.liquidprompt/liquidprompt ]; then
   . ~/.liquidprompt/liquidprompt
 fi
 
+export MAKEFLAGS="-j$(nproc --all)"
+
 # add local changes to your bash environment in ~/.bash_local
 if [ -f ~/.bash_local ]; then
   . ~/.bash_local
