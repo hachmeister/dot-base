@@ -10,7 +10,7 @@ alias f='ls -l $(find -type f -not -path '"'"'*/\.*'"'"' | fzy)'
 
 # kubectl
 function k() {
-  grc kubectl "$@"
+  kubectl "$@" 2>&1 | cat -s | grcat conf.kubectl-get
 }
 
 function wk() {
